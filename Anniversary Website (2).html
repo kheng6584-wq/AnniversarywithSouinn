@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story - Happy Anniversary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff0f5',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            roseGold: '#e8b4b8',
+                        }
+                    },
+                    fontFamily: {
+                        khmer: ['"Kantumruy Pro"', 'sans-serif'],
+                        cursive: ['"Great Vibes"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffffff 50%, #ffe4e6 100%);
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.15);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        /* Floating Hearts Background Animation */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Pulse glow effect */
+        .glow-heart {
+            filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.6));
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* Timeline connector line */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: linear-gradient(to bottom, #fecdd3, #fb7185, #fecdd3);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 28px;
+            }
+        }
+
+        /* Smooth page scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen pb-12 selection:bg-brand-200 selection:text-brand-600">
+
+    <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- Audio Player Toggle -->
+    <div class="fixed top-5 right-5 z-50">
+        <button id="musicToggleBtn" onclick="toggleAudio()" class="glass-card p-3 rounded-full text-brand-500 hover:text-brand-600 hover:scale-110 transition-all duration-300 shadow-md flex items-center justify-center w-12 h-12 focus:outline-none">
+            <i id="musicIcon" class="fas fa-music text-xl"></i>
+        </button>
+        <!-- Soft background ambient romantic tone synthesized via HTML audio -->
+        <audio id="bgMusic" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-loving-you-119.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-40 glass-nav py-3 px-6 mb-8">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-cursive text-2xl md:text-3xl text-brand-500 font-bold tracking-wider">Our Love Story</a>
+            <div class="flex space-x-4 md:space-x-8 text-sm md:text-base font-semibold text-gray-600">
+                <a href="#counter" class="hover:text-brand-500 transition">រំលឹកខួប</a>
+                <a href="#timeline" class="hover:text-brand-500 transition">ដំណើរការ</a>
+                <a href="#message" class="hover:text-brand-500 transition">សារស្នេហា</a>
+                <a href="#gallery" class="hover:text-brand-500 transition">រូបភាព</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 space-y-16 relative z-10">
+
+        <section id="counter" class="text-center pt-6 pb-10">
+            <div class="inline-block p-4 rounded-full bg-brand-100/60 mb-4 glow-heart">
+                <i class="fas fa-heart text-4xl text-brand-500"></i>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-2">រំលឹកខួបស្នេហា</h1>
+            <p class="text-brand-500 font-medium text-lg md:text-xl mb-6">
+                <i class="far fa-calendar-alt mr-1"></i> ថ្ងៃស្រលាញ់ 12 ខែ 8 ម៉ោង 2:01
+            </p>
+
+            <!-- Counter Cards -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 max-w-2xl mx-auto shadow-xl border border-brand-200">
+                <p class="text-gray-500 mb-6 text-sm md:text-base">យើងស្រលាញ់គ្នាប៉ុន្មានថ្ងៃហើយ?</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white/80 p-4 rounded-2xl border border-brand-100 shadow-sm">
+                        <span id="days" class="block text-3xl md:text-4xl font-bold text-brand-500">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 font-medium">ថ្ងៃ</span>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-2xl border border-brand-100 shadow-sm">
+                        <span id="hours" class="block text-3xl md:text-4xl font-bold text-brand-500">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 font-medium">ម៉ោង</span>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-2xl border border-brand-100 shadow-sm">
+                        <span id="minutes" class="block text-3xl md:text-4xl font-bold text-brand-500">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 font-medium">នាទី</span>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-2xl border border-brand-100 shadow-sm">
+                        <span id="seconds" class="block text-3xl md:text-4xl font-bold text-brand-500">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 font-medium">វិនាទី</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-brand-100 text-xs md:text-sm text-gray-400">
+                    <i class="fas fa-infinity text-brand-400 mr-1"></i> រាល់វិនាទីជាមួយអូនគឺជារឿងដែលមានន័យបំផុត
+                </div>
+            </div>
+        </section>
+
+
+        <section id="timeline" class="space-y-8">
+            <div class="text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">ដំណើរការស្រលាញ់ 💖</h2>
+                <div class="w-16 h-1 bg-brand-400 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="relative timeline-line max-w-3xl mx-auto py-4">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-10">
+                    <div class="flex items-center justify-start w-full md:w-1/2 md:pr-8 md:justify-end">
+                        <div class="glass-card p-5 rounded-2xl w-full md:w-auto md:max-w-sm hover:scale-[1.02] transition duration-300 ml-12 md:ml-0">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-semibold mb-2">12.08.2026</span>
+                            <h3 class="font-bold text-gray-800 text-lg">ថ្ងៃជួបគ្នា</h3>
+                            <p class="text-gray-600 text-sm mt-1">នៅក្នុងឆាត់ 💬</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-brand-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white text-sm">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-10">
+                    <div class="hidden md:block w-1/2"></div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-brand-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white text-sm">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="flex items-center justify-start w-full md:w-1/2 md:pl-8">
+                        <div class="glass-card p-5 rounded-2xl w-full md:w-auto md:max-w-sm hover:scale-[1.02] transition duration-300 ml-12 md:ml-0">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-semibold mb-2">14.08.2026</span>
+                            <h3 class="font-bold text-gray-800 text-lg">ថ្ងៃជួបគ្នាក្រៅលើកដំបូង</h3>
+                            <p class="text-gray-600 text-sm mt-1">ថ្ងៃយកឥវ៉ាន់អោយអូន 🎁</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-10">
+                    <div class="flex items-center justify-start w-full md:w-1/2 md:pr-8 md:justify-end">
+                        <div class="glass-card p-5 rounded-2xl w-full md:w-auto md:max-w-sm hover:scale-[1.02] transition duration-300 ml-12 md:ml-0">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-semibold mb-2">12.08.2026</span>
+                            <h3 class="font-bold text-gray-800 text-lg">ថ្ងៃជួបគ្នា Anniversary មុនមួយថ្ងៃ</h3>
+                            <p class="text-gray-600 text-sm mt-1">បានញុំាអីជុំគ្នា 🍽️</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-brand-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white text-sm">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-10">
+                    <div class="hidden md:block w-1/2"></div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-brand-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white text-sm">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="flex items-center justify-start w-full md:w-1/2 md:pl-8">
+                        <div class="glass-card p-5 rounded-2xl w-full md:w-auto md:max-w-sm hover:scale-[1.02] transition duration-300 ml-12 md:ml-0">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-semibold mb-2">17.08.2026</span>
+                            <h3 class="font-bold text-gray-800 text-lg">ថ្ងៃ 17 ខែ 08</h3>
+                            <p class="text-gray-600 text-sm mt-1">បានជួបគ្នារហូត 🫶</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="relative flex flex-col md:flex-row items-center">
+                    <div class="flex items-center justify-start w-full md:w-1/2 md:pr-8 md:justify-end">
+                        <div class="glass-card p-5 rounded-2xl w-full md:w-auto md:max-w-sm hover:scale-[1.02] transition duration-300 ml-12 md:ml-0">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-semibold mb-2">27.08.2028</span>
+                            <h3 class="font-bold text-gray-800 text-lg">ថ្ងៃជួបគ្នាបានយូរ</h3>
+                            <p class="text-gray-600 text-sm mt-1">ដើរទៅមុខជាមួយគ្នារហូត ✨</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-brand-500 rounded-full border-4 border-white shadow flex items-center justify-center text-white text-sm">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="message" class="space-y-6">
+            <div class="text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">សារស្នេហាពីបេះដូង 💌</h2>
+                <div class="w-16 h-1 bg-brand-400 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 md:p-10 max-w-2xl mx-auto shadow-lg relative overflow-hidden border-2 border-brand-200">
+                <div class="absolute -right-6 -bottom-6 text-brand-100 text-9xl pointer-events-none select-none">
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                
+                <div class="relative z-10 space-y-4 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start space-x-2 text-brand-500 font-semibold mb-2">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>សារផ្ញើជូនមនុស្សជាទីស្រលាញ់</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed text-base md:text-lg italic font-medium">
+                        "B sl oun min kit rg sart b sl oun jea oun b sl jarik oun tus oun mix krr b nv kbel oun forever. Hope yg sl kn dol jas b sl oun tang del jub oun dong bong oun nak del tver oy b kea klun tver mnus laor oun jea kea pnek oun jea mnus mnak del b kvas ot ban yg kan daii kn tv muk trr tt na my bsd 🫶"
+                    </p>
+
+                    <div class="pt-4 flex justify-end items-center space-x-2 text-brand-500 font-bold">
+                        <span>— ស្រលាញ់អូនជានិច្ច</span>
+                        <i class="fas fa-heart text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="gallery" class="space-y-6">
+            <div class="text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">រូបភាពអនុស្សាវរីយ៍ 📸</h2>
+                <p class="text-gray-500 text-sm mt-1">រាល់រូបភាពគឺជាការចងចាំដ៏មានតម្លៃ</p>
+                <div class="w-16 h-1 bg-brand-400 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                <!-- Photo 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition-all duration-300" onclick="openLightbox('https://i.ibb.co/dsjWBJJd/Messenger-creation-8525-F5-D2-ACB8-4-D78-BBBC-8-A52-DAD230-C6.jpg', 'Pic 1')">
+                    <div class="relative overflow-hidden h-72 bg-gray-100">
+                        <img src="https://i.ibb.co/dsjWBJJd/Messenger-creation-8525-F5-D2-ACB8-4-D78-BBBC-8-A52-DAD230-C6.jpg" 
+                             alt="Memory Photo 1" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x600/ffe4e6/fb7185?text=Photo+1'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fas fa-search-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="font-medium text-gray-700">អនុស្សាវរីយ៍ផ្អែមល្ហែម 01</p>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition-all duration-300" onclick="openLightbox('https://i.ibb.co/PzQrDyRn/received-1404630328312410.jpg', 'Pic 2')">
+                    <div class="relative overflow-hidden h-72 bg-gray-100">
+                        <img src="https://i.ibb.co/PzQrDyRn/received-1404630328312410.jpg" 
+                             alt="Memory Photo 2" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x600/ffe4e6/fb7185?text=Photo+2'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fas fa-search-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="font-medium text-gray-700">អនុស្សាវរីយ៍ផ្អែមល្ហែម 02</p>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition-all duration-300" onclick="openLightbox('https://i.ibb.co/pvjFPMt3/received-1057898143621358.jpg', 'Pic 3')">
+                    <div class="relative overflow-hidden h-72 bg-gray-100">
+                        <img src="https://i.ibb.co/pvjFPMt3/received-1057898143621358.jpg" 
+                             alt="Memory Photo 3" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x600/ffe4e6/fb7185?text=Photo+3'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fas fa-search-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="font-medium text-gray-700">អនុស្សាវរីយ៍ផ្អែមល្ហែម 03</p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-md group cursor-pointer hover:shadow-xl transition-all duration-300" onclick="openLightbox('https://i.ibb.co/1G6CCWtM/received-2177066509875066.jpg', 'Pic 4')">
+                    <div class="relative overflow-hidden h-72 bg-gray-100">
+                        <img src="https://i.ibb.co/1G6CCWtM/received-2177066509875066.jpg" 
+                             alt="Memory Photo 4" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x600/ffe4e6/fb7185?text=Photo+4'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fas fa-search-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="font-medium text-gray-700">អនុស្សាវរីយ៍ផ្អែមល្ហែម 04</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="lightbox" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeLightbox()">
+        <div class="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden p-2" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 bg-black/50 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Zoomed view" class="w-full max-h-[80vh] object-contain rounded-xl">
+            <p id="lightboxCaption" class="text-center py-3 text-gray-700 font-semibold"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center text-gray-500 text-sm py-6 border-t border-brand-100">
+        <p class="flex items-center justify-center space-x-1">
+            <span>បង្កើតឡើងដោយក្ដីស្រលាញ់</span>
+            <i class="fas fa-heart text-brand-500 mx-1"></i>
+            <span>សម្រាប់អូនតែម្នាក់</span>
+        </p>
+        <p class="text-xs text-gray-400 mt-1">Forever & Always ❤️</p>
+    </footer>
+
+    <script>
+        // Set love anniversary start date: 12th August 2026, 02:01 AM
+        const startDate = new Date('2026-08-12T02:01:00');
+
+        function updateLoveTimer() {
+            const now = new Date();
+            let diff = now - startDate;
+
+            // Handle scenario if start date is in future vs past
+            if (diff < 0) {
+                // If current date is before August 12, 2026
+                diff = Math.abs(diff);
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        // Floating Hearts Generator
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            // Randomize heart appearance
+            const icons = ['fa-heart', 'fa-heart font-regular', 'fa-sparkles'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.innerHTML = `<i class="fas ${randomIcon} text-brand-300"></i>`;
+            
+            const size = Math.random() * 20 + 10; // 10px to 30px
+            const left = Math.random() * 100; // 0% to 100%
+            const duration = Math.random() * 5 + 5; // 5s to 10s
+
+            heart.style.left = left + 'vw';
+            heart.style.fontSize = size + 'px';
+            heart.style.animationDuration = duration + 's';
+            heart.style.color = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3'][Math.floor(Math.random() * 4)];
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Music player logic
+        let isPlaying = false;
+        function toggleAudio() {
+            const audio = document.getElementById('bgMusic');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicBtn = document.getElementById('musicToggleBtn');
+
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'fas fa-music text-xl';
+                musicBtn.classList.remove('animate-spin');
+            } else {
+                audio.play().catch(e => {
+                    console.log('Autoplay restriction prevented audio auto-play');
+                });
+                musicIcon.className = 'fas fa-compact-disc text-xl text-brand-600';
+                musicBtn.classList.add('animate-spin');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Lightbox Modal Functionality
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+            
+            img.src = src;
+            cap.innerText = caption;
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Initialization on page load
+        window.onload = function() {
+            updateLoveTimer();
+            setInterval(updateLoveTimer, 1000);
+            
+            // Generate heart background periodically
+            setInterval(createHeart, 400);
+
+            // Optional auto play music interaction on first click
+            document.body.addEventListener('click', function firstClick() {
+                if(!isPlaying) {
+                   // play audio on user click if desired
+                }
+            }, { once: true });
+        };
+    </script>
+</body>
+</html>
